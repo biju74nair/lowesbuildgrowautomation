@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>   <string name="enterZipCode">
+        <![CDATA[
+        var registerBtn = document.getElementById(\"register\");
+        if(registerBtn !== undefined) {
+            document.aspnetForm.zipcode.value=94588;
+            document.getElementById(\"register\").click();
+        } else {
+            AndroidApp.notify(\"Registration Not Started\", true);
+        }
+        ]]>
+    </string>
+    <string name="selectLocation">
+<![CDATA[
+    var stores = [\"LOWE\'S OF DUBLIN, CA\",\"LOWE\'S OF LIVERMORE, CA\"];
+    function  getAnchorForStore(name) {
+        var anchor = undefined;
+        var store_containers = document.getElementsByClassName(\"store-container\");
+        for(var sc=0;sc<store_containers.length;sc++) {
+            var style4 = store_containers[sc].getElementsByClassName(\"style4\");
+            if(style4[0].innerText === name){
+                var parentNode = store_containers[sc].parentNode;
+                if(parentNode.nodeName === \"A\") {
+                    if(parentNode.href.indexOf(\"sign-in.aspx\") != -1) {
+                        anchor = parentNode;
+                    }
+                }
+                break;
+            }
+
+        }
+        return anchor;
+    }
+
+var clicked = false;
+for(var s=0;s<stores.length;s++){
+    var store = stores[s];
+    var anchor = getAnchorForStore(store);
+    if(anchor !== undefined){
+        clicked = true;
+        anchor.click();
+        break;
+    }
+};
+
+if(clicked === false) {
+     AndroidApp.notify(\"No Location Found\", true);
+}
+
+
+]]>
+    </string>
+
+<string name="enterCredentials">
+ <![CDATA[
+    document.getElementById(\"emailID\").value = \"biju74nair@gmail.com\";
+    var clearPasswordRegister = document.getElementById(\"clearPasswordRegister\");
+    clearPasswordRegister.focus();
+    clearPasswordRegister.click();
+    clearPasswordRegister.value = \"bijulnm\";
+
+    var passwordObj = document.getElementById(\"passWord\");
+    passwordObj.click();
+    passwordObj.value = \"bijulnm\";
+
+    var login = document.getElementById(\"login\");
+    login.focus();
+    login.click();
+
+]]>
+</string>
+    <string name="selectKids">
+       <![CDATA[
+
+            var selectMarker = document.getElementById(\"selectMarker\");
+            if(selectMarker.checked !== true) {
+                selectMarker.checked = true;
+                document.getElementById(\"register_large\").click();
+            } else {
+                AndroidApp.notify(\"Already Registered\", true);
+             }
+
+
+           ]]>
+    </string>
+
+<string name="signout">
+       <![CDATA[
+            function signout(){
+                var anchors = document.getElementsByTagName(\"a\");
+                for(var i=0;i<anchors.length;i++){
+                    if(anchors[i].href === \"signout.aspx\"){
+                        anchors[i].click();
+                        break;
+                    }
+                }
+            }
+
+            signout();
+           ]]>
+    </string>
+</resources>

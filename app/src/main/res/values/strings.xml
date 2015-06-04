@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lowes B &amp; G</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_first">LBG Scheduler</string>
+    <string name="scheduledDate">scheduledDate</string>
+    <string name="scheduledTime">scheduledTime</string>
+    <string name="isscheduled">isscheduled</string>
+    <string name="sharedPrefFile">com.ak2006.lowesbg.pref_file</string>
+
+</resources>

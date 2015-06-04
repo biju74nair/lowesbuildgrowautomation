@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ZIPCODE_PAGE">http://m.lowesbuildandgrow.com/default.aspx</string>
+    <string name="LOCAL_CLINICS">http://m.lowesbuildandgrow.com/local-clinics.aspx?zipcode=94588</string>
+    <string name="SIGNIN_PAGE">http://m.lowesbuildandgrow.com/sign-in.aspx</string>
+    <string name="SELECT_KIDS">http://m.lowesbuildandgrow.com/select-kids.aspx</string>
+    <string name="CONFIRMATION_PAGE">http://m.lowesbuildandgrow.com/confirmation.aspx</string>
+</resources>
