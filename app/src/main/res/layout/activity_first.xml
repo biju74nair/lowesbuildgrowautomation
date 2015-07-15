@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="lowes.ak2006.com.lowesbandg.FirstActivity">
 
       <TableRow
@@ -77,6 +78,9 @@
         <EditText
             android:id="@+id/status"
             android:layout_span="2"
+            android:inputType="textMultiLine"
+            android:maxLines ="2"
+            android:maxLength ="100"
             android:text="" android:editable="false"/>
     </TableRow>
 
@@ -86,14 +90,23 @@
         android:layout_height="wrap_content"
         android:padding="5dip" >
 
+         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manual Login"
+            android:id="@+id/manualLoginBtn"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="42dp" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manual Start"
             android:id="@+id/manualStartBtn"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="42dp" />
+            android:layout_alignTop="@+id/manualLoginBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="51dp" />
     </TableRow>
 
 

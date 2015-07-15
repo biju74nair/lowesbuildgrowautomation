@@ -2,8 +2,6 @@ package lowes.ak2006.com.lowesbandg.datetime;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -13,8 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import lowes.ak2006.com.lowesbandg.R;
 
 /**
  * Created by binair on 6/3/15.
@@ -36,16 +32,18 @@ public class DateTimeHandler implements DatePickerDialog.OnDateSetListener,TimeP
     TextView dateTxt;
     TextView timeTxt;
 
-    boolean isdateSet;
-    boolean isTimeSet;
+    boolean dateSet;
+    boolean timeSet;
 
     public DateTimeHandler(TextView dateTxt, TextView timeTxt) {
         this.dateTxt = dateTxt;
         this.timeTxt = timeTxt;
+        dateSet = false;
+        timeSet = false;
     }
 
     public boolean isSet(){
-        return isdateSet && isTimeSet;
+        return dateSet && timeSet;
     }
 
     @Override
@@ -57,8 +55,9 @@ public class DateTimeHandler implements DatePickerDialog.OnDateSetListener,TimeP
 
         dateTxt.setText(DATE_FORMAT.format(calendar.getTime()));
 
-        isdateSet = true;
-    }
+        dateSet = true;
+
+     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -66,9 +65,9 @@ public class DateTimeHandler implements DatePickerDialog.OnDateSetListener,TimeP
         calendar.set(Calendar.SECOND, 0);
 
         timeTxt.setText(TIME_FORMAT.format(calendar.getTime()));
+        timeSet = true;
 
-        isTimeSet = true;
-    }
+     }
 
     public String getDateAsString(){
         return DATE_FORMAT.format(calendar.getTime());
@@ -82,19 +81,14 @@ public class DateTimeHandler implements DatePickerDialog.OnDateSetListener,TimeP
         return calendar.getTime().getTime();
     }
 
-    public static long getTimeFromShared(Context context, SharedPreferences sharedPreferences){
-        String dateStr =  sharedPreferences.getString(context.getString(R.string.scheduledDate), "");
-        String timeStr =  sharedPreferences.getString(context.getString(R.string.scheduledTime), "");
-
-        String dt = dateStr +" "+timeStr;
-        long ltime = -1;
+    public static Date parseDateAndTime(String dateAndTime){
         try {
-            Date date = DATE_TIME_FORMAT.parse(dt);
-            ltime = date.getTime();
+            Date date = DATE_TIME_FORMAT.parse(dateAndTime);
+            return date;
         }catch(ParseException pe){
 
         }
-        return ltime;
+        return null;
     }
 
-}
+ }

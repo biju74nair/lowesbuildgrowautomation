@@ -25,6 +25,9 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
     }
 
      public boolean setAlarm(Context context, long time) {
+
+        cancelAlarm(context);
+
         alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
@@ -54,8 +57,6 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         // If the alarm has been set, cancel it.
         if (alarmMgr!= null) {
             alarmMgr.cancel(alarmIntent);
-        }
-
         // Disable {@code AlarmBootReceiver} so that it doesn't automatically restart the
         // alarm when the device is rebooted.
         ComponentName receiver = new ComponentName(context, AlarmBootReceiver.class);
@@ -64,6 +65,8 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
+        }
+
     }
     // END_INCLUDE(cancel_alarm)
 }

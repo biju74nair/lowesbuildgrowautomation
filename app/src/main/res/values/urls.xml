@@ -5,4 +5,5 @@
     <string name="SIGNIN_PAGE">http://m.lowesbuildandgrow.com/sign-in.aspx</string>
     <string name="SELECT_KIDS">http://m.lowesbuildandgrow.com/select-kids.aspx</string>
     <string name="CONFIRMATION_PAGE">http://m.lowesbuildandgrow.com/confirmation.aspx</string>
+    <string name="MYCLINICS">http://m.lowesbuildandgrow.com/my-clinics.aspx</string>
 </resources>

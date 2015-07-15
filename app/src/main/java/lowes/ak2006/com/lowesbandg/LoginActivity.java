@@ -8,7 +8,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 
-public class MainActivity extends Activity {
+public class LoginActivity extends Activity {
 
 
     @Override
@@ -21,13 +21,15 @@ public class MainActivity extends Activity {
         webSettings.setJavaScriptEnabled(true);
 
         WebCallBack webCallback = new WebCallbackHandler();
+
         LowesWebViewClient webViewClient = new LowesWebViewClient(this);
         webViewClient.setWebCallBack(webCallback);
+
 
         webView.addJavascriptInterface(webViewClient, "AndroidApp");
         webView.setWebViewClient(webViewClient);
 
-        webView.loadUrl(getString(R.string.ZIPCODE_PAGE));
+        webView.loadUrl(getString(R.string.SIGNIN_PAGE));
 
     }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>   <string name="enterZipCode">
         <![CDATA[
+        AndroidApp.notify(\"Starting registration\", false);
         var registerBtn = document.getElementById(\"register\");
         if(registerBtn !== undefined) {
             document.aspnetForm.zipcode.value=94588;
@@ -12,7 +13,7 @@
     </string>
     <string name="selectLocation">
 <![CDATA[
-    var stores = [\"LOWE\'S OF DUBLIN, CA\",\"LOWE\'S OF LIVERMORE, CA\"];
+    var stores = [\"LOWE\'S OF DUBLIN, CA\"];
     function  getAnchorForStore(name) {
         var anchor = undefined;
         var store_containers = document.getElementsByClassName(\"store-container\");
@@ -54,6 +55,9 @@ if(clicked === false) {
 <string name="enterCredentials">
  <![CDATA[
     document.getElementById(\"emailID\").value = \"biju74nair@gmail.com\";
+
+     document.getElementById(\"rememberMe\").checked = true;
+
     var clearPasswordRegister = document.getElementById(\"clearPasswordRegister\");
     clearPasswordRegister.focus();
     clearPasswordRegister.click();

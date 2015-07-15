@@ -23,6 +23,7 @@ public class FirstActivity extends Activity implements View.OnClickListener{
     DateTimeHandler dateTimeHandler;
 
     Button manualStartBtn;
+    Button manualLoginBtn;
     Button scheduleButton;
     Button cancelSchButton;
     Button dateButton;
@@ -37,6 +38,7 @@ public class FirstActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_first);
 
         manualStartBtn = (Button)findViewById(R.id.manualStartBtn);
+        manualLoginBtn = (Button)findViewById(R.id.manualLoginBtn);
         scheduleButton = (Button)findViewById(R.id.scheduleBtn);
         cancelSchButton = (Button)findViewById(R.id.cancelSchBtn);
         dateButton = (Button)findViewById(R.id.dateBtn);
@@ -47,6 +49,7 @@ public class FirstActivity extends Activity implements View.OnClickListener{
         status= (TextView)findViewById(R.id.status);
 
         manualStartBtn.setOnClickListener(this);
+        manualLoginBtn.setOnClickListener(this);
         scheduleButton.setOnClickListener(this);
         cancelSchButton.setOnClickListener(this);
         dateButton.setOnClickListener(this);
@@ -70,6 +73,11 @@ public class FirstActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.manualLoginBtn:
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(loginIntent);
+                break;
             case R.id.manualStartBtn:
                 Intent lbgIntent = new Intent(this, MainActivity.class);
                 lbgIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -91,22 +99,24 @@ public class FirstActivity extends Activity implements View.OnClickListener{
                 }
                  break;
              case R.id.cancelSchBtn:
-                alarm.cancelAlarm(this);
+                 alarm.cancelAlarm(this);
                  Toast.makeText(this, "Canceled", Toast.LENGTH_LONG).show();
                  break;
             case R.id.dateBtn :
                 DatePickerDialogFragment datePickerDialogFragment = new DatePickerDialogFragment();
+                datePickerDialogFragment.setContext(this);
                 datePickerDialogFragment.setDateSetListener(dateTimeHandler);
                 datePickerDialogFragment.show(getFragmentManager(), "datePicker");
                 break;
             case R.id.timeBtn :
                 TimePickerFragment timePickerFragment = new TimePickerFragment();
+                timePickerFragment.setContext(this);
                 timePickerFragment.setOnTimeSetListener(dateTimeHandler);
                 timePickerFragment.show(getFragmentManager(), "timePicker");
                 break;
         }
 
-    }
+}
 
 
     @Override

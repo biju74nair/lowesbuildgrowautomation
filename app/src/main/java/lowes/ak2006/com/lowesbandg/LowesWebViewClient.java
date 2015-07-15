@@ -1,9 +1,7 @@
 package lowes.ak2006.com.lowesbandg;
 
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.Context;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
@@ -15,6 +13,7 @@ import android.webkit.WebViewClient;
 public class LowesWebViewClient extends WebViewClient {
 
     Context context;
+    WebCallBack webCallBack;
 
     boolean defaultPageAccessed = false;
 
@@ -36,17 +35,7 @@ public class LowesWebViewClient extends WebViewClient {
     @JavascriptInterface
     public void notify(String data, boolean closeApp){
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("Build & Grow Notification")
-                        .setContentText(data);
-
-
-        NotificationManager mNotificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1234, mBuilder.build());
-
+        Notification.notify(context,data);
         if(closeApp){
             closeApp();
         }
@@ -79,7 +68,10 @@ public class LowesWebViewClient extends WebViewClient {
             javascript = context.getString(R.string.selectKids);
         } else if(url.startsWith(context.getString(R.string.CONFIRMATION_PAGE))) {
             notify("Successfully Registered", true);
-            //javascript = context.getString(R.string.signout);
+            webCallBack.afterRegistration(context);
+        } else if(url.startsWith(context.getString(R.string.MYCLINICS))) {
+            notify("Successfully Logged-in", true);
+            webCallBack.afterLogin(context);
         }
 
         if(javascript != null){
@@ -88,4 +80,7 @@ public class LowesWebViewClient extends WebViewClient {
         }
     }
 
+    public void setWebCallBack(WebCallBack webCallBack) {
+        this.webCallBack = webCallBack;
+    }
 }
